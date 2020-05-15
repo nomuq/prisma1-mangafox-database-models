@@ -1,0 +1,43 @@
+type Manga {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  title: String!
+  description: String
+  genres: [String]
+  tags: [String]
+  synonyms: [String]
+  type: String
+  cover: Cover
+  banner: String
+  links: Link
+  isPublishing: Boolean! @default(value: true)
+  startDate: DateTime
+  endDate: DateTime
+  chapters: [Chapter] @relation(link: INLINE)
+}
+
+type Chapter {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  title: String
+  number: Int!
+  links: [String]
+  source: String!
+  language: String! @default(value: "en")
+}
+
+type Cover @embedded {
+  color: String
+  extralarge: String
+  large: String
+  medium: String
+}
+
+type Link @embedded {
+  anilist: String
+  mal: String
+  mangadex: String
+  mangareader: String
+}
