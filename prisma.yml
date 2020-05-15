@@ -5,3 +5,7 @@ databaseType: document
 generate:
   - generator: go-client
     output: ./prisma/
+
+hooks:
+  post-deploy:
+    - prisma generate
